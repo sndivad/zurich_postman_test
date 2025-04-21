@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "0895faf8-e6ab-4055-8a9d-81cc6f8f324d",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11648423"
+	},
+	"item": [
+		{
+			"name": "get users",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://680537f4ca467c15be68936d.mockapi.io/users/users",
+					"protocol": "https",
+					"host": [
+						"680537f4ca467c15be68936d",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"users",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains name\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"name\", \"Juan Pérez\");\r",
+							"});\r",
+							"\r",
+							"// Test to check if the response testing value is a boolean\r",
+							"pm.test(\"Response contains a boolean testing value\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.testingvalue).to.be.a('boolean');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Juan Pérez\",\r\n  \"testingvalue\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://680537f4ca467c15be68936d.mockapi.io/users/users",
+					"protocol": "https",
+					"host": [
+						"680537f4ca467c15be68936d",
+						"mockapi",
+						"io"
+					],
+					"path": [
+						"users",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
